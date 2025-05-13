@@ -9,7 +9,7 @@ type RepositoryInfoCardProps = {
   stargazerCount: number;
   forkCount: number;
   updatedAt: string;
-  primaryLanguage?: string;
+  primaryLanguage?: { name: string };
   url: string;
 };
 
@@ -28,7 +28,11 @@ function RepositoryInfoCard({
     <Card key={`${name}: ${stargazerCount}`} className="w-full shadow-xs">
       <CardContent>
         <CardTitle className="mb-3">
-          <a href={url} className="text-base sm:text-lg font-semibold hover:underline">
+          <a
+            href={url}
+            className="text-base sm:text-lg font-semibold hover:underline"
+            target="_blank"
+          >
             {name}
           </a>
         </CardTitle>
@@ -51,7 +55,7 @@ function RepositoryInfoCard({
           {primaryLanguage && (
             <p className="flex gap-1 items-center">
               <Globe className="w-4 h-4" />
-              <span>{primaryLanguage}</span>
+              <span>{primaryLanguage.name}</span>
             </p>
           )}
 

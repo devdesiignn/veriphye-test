@@ -1,21 +1,28 @@
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 type SearchBarProps = {
-  inputValue: string;
-  onInputChange: (value: string) => void;
-  onSubmit?: () => void;
+  onSubmit: (value: string) => void;
 };
 
-function SearchBar({ inputValue, onInputChange, onSubmit }: SearchBarProps) {
+function SearchBar({ onSubmit }: SearchBarProps) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(inputValue);
+  };
+
   return (
     <>
       {/* Search bar */}
-      <form className="flex-1" onSubmit={onSubmit}>
+
+      <form className="flex-1" onSubmit={handleSubmit}>
         <Input
           placeholder="Search usernames..."
           className="h-10 text-sm"
           value={inputValue}
-          onChange={(event) => onInputChange(event.target.value)}
+          onChange={(event) => setInputValue(event.target.value)}
         />
       </form>
     </>
