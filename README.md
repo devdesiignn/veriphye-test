@@ -1,54 +1,90 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Setting Up The Project
 
-Currently, two official plugins are available:
+Follow these steps to set up and run the project locally, as well as configure it for deployment on Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Clone the Repository
 
-## Expanding the ESLint configuration
+First, clone the repository from GitHub to your local machine:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/devdesiignn/veriphye-test.git
+cd veriphye-test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Make sure you have [Node.js](https://nodejs.org/) installed, then run the following command to install the project's dependencies:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3. Set Up Environment Variables
+
+This project requires two environment variables to be set up:
+
+* `VITE_GRAPHQL_URI`: The GraphQL URI endpoint that the application will use to fetch data.
+* `VITE_GITHUB_TOKEN`: A GitHub Personal Access Token (PAT) for authentication when interacting with GitHub's API.
+
+#### Local Development (.env.local)
+
+To set up the environment variables locally, create a `.env.local` file in the root of the project (if it doesn't exist already). Add the following:
+
+```
+VITE_GRAPHQL_URI=<your-graphql-uri>
+VITE_GITHUB_TOKEN=<your-github-token>
+```
+
+Replace `<your-graphql-uri>` and `<your-github-token>` with your actual values.
+
+##### How to Obtain a GitHub Personal Access Token (PAT)
+
+1. Go to [GitHub's PAT settings page](https://github.com/settings/tokens).
+2. Click **Generate new token**.
+3. Give the token a name and select the required permissions (**repo**).
+4. Click **Generate token** and copy it.
+
+### 4. Run the Project Locally
+
+After setting up the `.env.local` file, you can run the project locally:
+
+```bash
+npm run dev
+```
+
+The app should now be running locally, and you can access it at `http://localhost:3000`.
+
+---
+
+### 5. Deployment on Vercel
+
+To deploy the project on Vercel, you will need to configure the environment variables through the Vercel dashboard.
+
+#### Setting Environment Variables on Vercel
+
+1. Go to the project in the [Vercel Dashboard](https://vercel.com/dashboard).
+
+2. Click on **Settings** in the sidebar.
+
+3. Scroll down to the **Environment Variables** section.
+
+4. Click on **Add** to add the required environment variables:
+
+   * **Name:** `VITE_GRAPHQL_URI`
+
+   * **Value:** `<your-graphql-uri>`
+
+   * **Name:** `VITE_GITHUB_TOKEN`
+
+   * **Value:** `<your-github-token>`
+
+5. After adding these variables, Vercel will automatically build and deploy the project using the environment variables.
+
+### 6. Troubleshooting
+
+If you run into any issues, ensure that:
+
+* Your GraphQL URI and GitHub token are correct.
+* Your `.env.local` file is properly formatted and placed in the root of your project.
+* The Vercel environment variables are set correctly and deployed.
