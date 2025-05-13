@@ -41,7 +41,7 @@ Replace `<your-graphql-uri>` and `<your-github-token>` with your actual values.
 ##### How to Obtain a GitHub Personal Access Token (PAT)
 
 1. Go to [GitHub's PAT settings page](https://github.com/settings/tokens).
-2. Click **Generate new token**.
+2. Click **Generate new token (classic)**.
 3. Give the token a name and select the required permissions (**repo**).
 4. Click **Generate token** and copy it.
 
